@@ -1,18 +1,27 @@
-#include<iostream>
+#include <iostream>
+#include <iomanip>
+#include <cmath>
 #include<fstream>
-#include<string>
 using namespace std;
 
-int main (){
-	ifstream source;
-	ofstream dest;
-	source.open("cheerbook.txt") ;
-	dest.open("cheerbook_copy.txt");
-	
-	//กรอก Code เฉพาะส่วนนี้ ให้สอดคล้องกับโจทย์และ Code ส่วนอื่น ๆ 
-	//โดยห้ามแก้ไข Code ในส่วนอื่น ๆ
+int main(){
+    ifstream source ;
+    string textline ;
+    double sum=0 , count=0 , Mean , sum2=0 , SD;
+    source.open("score.txt");
 
-    source.close();
-    dest.close();
-	return 0;
+    while (getline(source,textline))
+    {
+        sum = sum + stod(textline);
+        sum2 = sum2 + pow(stod(textline),2);
+        count++;
+
+    }
+    Mean = sum/count;
+    SD = sqrt(sum2/count-pow(Mean,2));
+
+    cout << "Number of data = "<<count << endl;
+    cout << setprecision(3);
+    cout << "Mean = "<<Mean << endl;
+    cout << "Standard deviation = "<<SD;
 }
